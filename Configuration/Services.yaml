@@ -1,0 +1,15 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  NITSAN\NsPwa\:
+    resource: '../Classes/*'
+    
+  NITSAN\NsPwa\Event\generatePwaApp:
+    tags:
+      - name: event.listener
+        method: 'generatePwaApp'
+        event: TYPO3\CMS\Core\Package\Event\AfterPackageActivationEvent
+

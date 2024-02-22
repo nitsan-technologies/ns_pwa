@@ -1,0 +1,45 @@
+ns_pwa {
+    settings{
+            #cat = ns_pwa/503/01; type=string; label= Short Name
+            short_name = T3Planet
+
+            #cat = ns_pwa/503/02; type=string; label= Name
+            name = TYPO3 Store
+
+            #cat = ns_pwa/503/03; type=string; label= Start Url
+            start_url = /
+
+            #cat = ns_pwa/503/04; type=color; label= Background Color
+            background_color = #3a85e6
+
+            #cat = ns_pwa/503/05; type=options[browser,standalone,minimal-ui,fullscreen]; label = Display: Select type display
+            display = standalone
+
+            #cat = ns_pwa/503/06; type=string; label= Scope
+            scope = /
+
+            #cat = ns_pwa/503/07; type=color; label= Theme Color
+            theme_color = #3a85e6
+
+            #cat = ns_pwa/503/08; type=string; label= PWA Icon
+            icon = /fileadmin/pwa/pwa.png
+
+            #cat = ns_pwa/503/09; type=string; label= PWA Mask Icon 144*144
+            icon_144 = /fileadmin/pwa/pwa-144.png
+
+            #cat = ns_pwa/503/10; type=string; label= PWA Icon 192*192
+            icon_192 = /fileadmin/pwa/pwa-192.png
+
+            #cat = ns_pwa/503/11; type=string; label= PWA Icon 512*512
+            icon_512 = /fileadmin/pwa/pwa-512.png
+
+            #cat = ns_pwa/503/12; type=string; label= Scrrenshot for desktop PWA Icon 640*320
+            ss_icon_desktop = /fileadmin/pwa/screenshot.jpg
+
+            #cat = ns_pwa/503/13; type=string; label= Scrrenshot for mobile PWA Icon 640*320
+            ss_icon_mobile = /fileadmin/pwa/screenshot-mobile.jpg
+
+            #cat = ns_pwa/503/15; type=string; label= Entry Point of Site (/ or /blog)
+            entry_point = /
+    }
+}
