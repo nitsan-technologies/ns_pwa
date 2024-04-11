@@ -8,7 +8,7 @@ use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Core\Information\Typo3Version;
-
+use TYPO3\CMS\Core\Cache\CacheManager;
 /**
  * Settings service
  */
@@ -126,16 +126,16 @@ class PwaService
        });
        ";
 
-        $caching = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Cache\CacheManager::class);
+        $caching = GeneralUtility::makeInstance(CacheManager::class);
         $caching->flushCaches();
 
-        if (Environment::isComposerMode()) 
+        if (Environment::isComposerMode())
         {
           $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
           $versionInformation->getMajorVersion();
 
           //Creating PWA Directory
-          if(!Environment::getProjectPath() .'/public/fileadmin/pwa'){
+          if(!is_dir(Environment::getProjectPath() .'/public/fileadmin/pwa')){
             mkdir(Environment::getProjectPath() .'/public/fileadmin/pwa');
           }
 
@@ -165,37 +165,35 @@ class PwaService
 
         return json_encode($pwa);
     }
-    function copyfolder ($from, $to, $ext="*") 
+    function copyfolder ($from, $to, $ext="*")
     {
-      // (A1) SOURCE FOLDER CHECK
+      // Source Folder Check
       if (!is_dir($from)) { exit("$from does not exist"); }
 
-      // (A2) CREATE DESTINATION FOLDER
+      // Create Destination Folder
       if (!is_dir($to)) {
         if (!mkdir($to)) { exit("Failed to create $to"); };
         echo "$to created\r\n";
       }
 
-      // (A3) GET ALL FILES + FOLDERS IN SOURCE
+      // Get all files + folders in source
       $all = glob("$from$ext", GLOB_MARK);
-      // print_r($all);
 
-      // (A4) COPY FILES + RECURSIVE INTERNAL FOLDERS
-      if (count($all)>0) 
+      // Copy files + recursive internal folders
+      if (count($all)>0)
       { 
-        foreach ($all as $a) 
+        foreach ($all as $a)
         {
-          $ff = basename($a); // CURRENT FILE/FOLDER
-          if (is_dir($a)) 
+          $ff = basename($a); // Current file/folder
+          if (is_dir($a))
           {
             $this->copyfolder("$from$ff/", "$to$ff/");
           } 
           else {
             if (!copy($a, "$to$ff")) 
-            { 
-              exit("Error copying $a to $to$ff"); 
+            {
+              exit("Error copying $a to $to$ff");
             }
-            // echo "$a copied to $to$ff\r\n";
           }
       }}
     }
