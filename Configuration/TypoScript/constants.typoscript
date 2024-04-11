@@ -1,10 +1,10 @@
 ns_pwa {
     settings{
             #cat = ns_pwa/503/01; type=string; label= Short Name
-            short_name = T3Planet
+            short_name = NITSAN
 
             #cat = ns_pwa/503/02; type=string; label= Name
-            name = TYPO3 Store
+            name = TYPO3 Agency
 
             #cat = ns_pwa/503/03; type=string; label= Start Url
             start_url = /
@@ -33,13 +33,19 @@ ns_pwa {
             #cat = ns_pwa/503/11; type=string; label= PWA Icon 512*512
             icon_512 = /fileadmin/pwa/pwa-512.png
 
-            #cat = ns_pwa/503/12; type=string; label= Scrrenshot for desktop PWA Icon 640*320
+            #cat = ns_pwa/503/12; type=string; label= The width and height of desktop screenshots must be at least 370px and at most 3840px
             ss_icon_desktop = /fileadmin/pwa/screenshot.jpg
 
-            #cat = ns_pwa/503/13; type=string; label= Scrrenshot for mobile PWA Icon 640*320
+            #cat = ns_pwa/503/13; type=string; label= Please enter the size of desktop screenshot you uploaded above (it's required)
+            ss_icon_size_desktop = 2880x2880
+
+            #cat = ns_pwa/503/14; type=string; label= The width and height of mobile screenshots must be at least 370px and at most 3840px
             ss_icon_mobile = /fileadmin/pwa/screenshot-mobile.jpg
 
-            #cat = ns_pwa/503/15; type=string; label= Entry Point of Site (/ or /blog)
+            #cat = ns_pwa/503/15; type=string; label= Please enter the size of mobile screenshot you uploaded above (it's required)
+            ss_icon_size_mobile = 2880x2880
+
+            #cat = ns_pwa/503/16; type=string; label= Entry Point of Site (/ or /blog)
             entry_point = /
     }
 }

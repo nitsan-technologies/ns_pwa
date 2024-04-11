@@ -22,9 +22,7 @@ class PwaService
         $configurationManager = GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface');
         $config = $configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT);
 
-
         $variations = $config['ns_pwa.']['settings.'];
-
         $pwa = [
           "short_name" => $variations['short_name'],
           "name" => $variations['name'],
@@ -56,21 +54,21 @@ class PwaService
         ];
 
         // Check if ss_icon_mobile exists and add it to the screenshots array
-        if (isset($variations['ss_icon_desktop']) && !empty($variations['ss_icon_desktop'])) 
+        if (!empty($variations['ss_icon_desktop']))
         {
           $pwa['screenshots'][] = [
             "src" => "$variations[ss_icon_desktop]",
-            "sizes" => "2880x2880",
+            "sizes" => "$variations[ss_icon_size_desktop]",
             "type" => "image/jpg",
             "form_factor" => "wide",
             "label" => "For Desktop"
           ];
         }
-        if (isset($variations['ss_icon_mobile']) && !empty($variations['ss_icon_mobile'])) 
+        if (!empty($variations['ss_icon_mobile']))
         {
           $pwa['screenshots'][] = [
             "src" => "$variations[ss_icon_mobile]",
-            "sizes" => "2880x2880",
+            "sizes" => "$variations[ss_icon_size_mobile]",
             "type" => "image/jpg",
             "form_factor" => "narrow",
             "label" => "For Mobile"
@@ -129,37 +127,66 @@ class PwaService
         $caching = GeneralUtility::makeInstance(CacheManager::class);
         $caching->flushCaches();
 
+        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
+        $versionInformation->getMajorVersion();
+
         if (Environment::isComposerMode())
         {
-          $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
-          $versionInformation->getMajorVersion();
-
           //Creating PWA Directory
           if(!is_dir(Environment::getProjectPath() .'/public/fileadmin/pwa')){
             mkdir(Environment::getProjectPath() .'/public/fileadmin/pwa');
           }
-
-
           // Copy PWA icons from extension to fileadmin
           if($versionInformation->getMajorVersion() >= 12){
             $this->copyfolder(Environment::getProjectPath() . "/vendor/nitsan/ns-pwa/Resources/Public/pwa/icons/", Environment::getProjectPath() . '/' . '/public/fileadmin/pwa/');
+
+            //Creating JavaScript file and append data
+            $jsonFile = Environment::getProjectPath().'/service-worker.js';
+            if (!file_exists($jsonFile)) {
+                fopen(Environment::getProjectPath(). "/service-worker.js", "w") or die("Unable to open file!");
+                GeneralUtility::writeFile($jsonFile, $data);
+            }
           }
           else{
             $this->copyfolder(Environment::getProjectPath() . "/public/typo3conf/ext/Resources/Public/pwa/icons/", Environment::getProjectPath() . '/' . '/public/fileadmin/pwa/');
-          }
-
-          //Creating JavaScript file and append data
-          $jsonFile = Environment::getProjectPath().'/public/service-worker.js';
-          if (!file_exists($jsonFile)) {
-              fopen(Environment::getProjectPath(). "/public/service-worker.js", "w") or die("Unable to open file!");
-              GeneralUtility::writeFile($jsonFile, $data);
+            $jsonFile = Environment::getProjectPath().'/service-worker.js';
+            if (!file_exists($jsonFile)) {
+                fopen(Environment::getProjectPath(). "/service-worker.js", "w") or die("Unable to open file!");
+                GeneralUtility::writeFile($jsonFile, $data);
+            }
           }
         }
         else{
-          GeneralUtility::writeFile($data, true);
-        }
+          //File Creation and clone icons folder from extension
+          if($versionInformation->getMajorVersion() >= 12)
+          {
+            //Creating PWA Directory
+            if(!is_dir(Environment::getProjectPath() .'/fileadmin/pwa')){
+              mkdir(Environment::getProjectPath() .'/fileadmin/pwa');
+            }
+            $this->copyfolder(Environment::getPublicPath() . "/typo3conf/ext/ns_pwa/Resources/Public/pwa/icons/", Environment::getProjectPath() . '/' . 'fileadmin/pwa/');
 
-        
+            //Creating JavaScript file and append data
+            $jsonFile = Environment::getProjectPath().'/service-worker.js';
+            if (!file_exists($jsonFile)) {
+                fopen(Environment::getProjectPath(). "/service-worker.js", "w") or die("Unable to open file!");
+                GeneralUtility::writeFile($jsonFile, $data);
+            }
+          }
+          else{
+            //Creating PWA Directory
+            if(!is_dir(Environment::getPublicPath() .'/fileadmin/pwa')){
+              mkdir(Environment::getPublicPath() .'/fileadmin/pwa');
+            }
+            $this->copyfolder(Environment::getPublicPath() . "/typo3conf/ext/ns_pwa/Resources/Public/pwa/icons/", Environment::getPublicPath() . '/' . 'fileadmin/pwa/');
+            
+            $jsonFile = Environment::getPublicPath().'/service-worker.js';
+            if (!file_exists($jsonFile)) {
+                fopen(Environment::getPublicPath(). "/service-worker.js", "w") or die("Unable to open file!");
+                GeneralUtility::writeFile($jsonFile, $data);
+            }
+          }
+        }
 
         $caching->flushCaches();
 

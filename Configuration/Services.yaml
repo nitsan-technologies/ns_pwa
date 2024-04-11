@@ -6,10 +6,3 @@ services:
 
   NITSAN\NsPwa\:
     resource: '../Classes/*'
-    
-  NITSAN\NsPwa\Event\generatePwaApp:
-    tags:
-      - name: event.listener
-        method: 'generatePwaApp'
-        event: TYPO3\CMS\Core\Package\Event\AfterPackageActivationEvent
-
