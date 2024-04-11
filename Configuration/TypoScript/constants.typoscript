@@ -6,7 +6,7 @@ ns_pwa {
             #cat = ns_pwa/503/02; type=string; label= Name
             name = TYPO3 Agency
 
-            #cat = ns_pwa/503/03; type=string; label= Start Url
+            #cat = ns_pwa/503/03; type=string; label= Start Url (/ or /blog)
             start_url = /
 
             #cat = ns_pwa/503/04; type=color; label= Background Color
@@ -15,7 +15,7 @@ ns_pwa {
             #cat = ns_pwa/503/05; type=options[browser,standalone,minimal-ui,fullscreen]; label = Display: Select type display
             display = standalone
 
-            #cat = ns_pwa/503/06; type=string; label= Scope
+            #cat = ns_pwa/503/06; type=string; label= Scope (/ or /blog)
             scope = /
 
             #cat = ns_pwa/503/07; type=color; label= Theme Color
