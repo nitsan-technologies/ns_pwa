@@ -1,15 +1,21 @@
 {
     "name": "nitsan/ns-pwa",
     "type": "typo3-cms-extension",
-    "description": "",
-    "authors": [],
+    "description": "Make your TYPO3 website lightning fast & work offline! Get our TYPO3 PWA extension for better SEO & mobile experience. Install today!",
+    "homepage": "https://extensions.typo3.org/extension/ns_pwa/",
     "license": "GPL-2.0-or-later",
+    "keywords": [
+        "TYPO3 PWA",
+        "TYPO3 Progressive Web Application",
+        "TYPO3 PWA Sites",
+        "TYPO3"
+    ],
+    "support": {
+        "issues": "https://github.com/nitsan-technologies/ns_pwa/issues"
+      },
     "require": {
         "typo3/cms-core": "^11 || ^12"
-    },
-    "require-dev": {
-        "typo3/testing-framework": "^6.9.0"
-    },
+    },      
     "autoload": {
         "psr-4": {
             "NITSAN\\NsPwa\\": "Classes"
