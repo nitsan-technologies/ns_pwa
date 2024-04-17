@@ -195,17 +195,17 @@ class PwaMiddleware implements MiddlewareInterface
             //Creating JavaScript file and append data
             $jsonFile = Environment::getProjectPath().'/site.webmanifest';
             if (!file_exists($jsonFile)) {
-                fopen(Environment::getProjectPath(). "/site.webmanifest", "w") or die("Unable to open file!");
-                GeneralUtility::writeFile($jsonFile, json_encode($data));
+              fopen(Environment::getProjectPath(). "/site.webmanifest", "w") or die("Unable to open file!");
             }
+              GeneralUtility::writeFile($jsonFile, json_encode($data));
           }
           else{
             $this->copyfolder(Environment::getProjectPath() . "/public/typo3conf/ext/Resources/Public/pwa/icons/", Environment::getProjectPath() . '/' . '/public/fileadmin/pwa/');
             $jsonFile = Environment::getProjectPath().'/site.webmanifest';
             if (!file_exists($jsonFile)) {
                 fopen(Environment::getProjectPath(). "/site.webmanifest", "w") or die("Unable to open file!");
-                GeneralUtility::writeFile($jsonFile, json_encode($data));
             }
+            GeneralUtility::writeFile($jsonFile, json_encode($data));
           }
         }
         else{
@@ -221,9 +221,9 @@ class PwaMiddleware implements MiddlewareInterface
             //Creating JavaScript file and append data
             $jsonFile = Environment::getProjectPath().'/site.webmanifest';
             if (!file_exists($jsonFile)) {
-                fopen(Environment::getProjectPath(). "/site.webmanifest", "w") or die("Unable to open file!");
-                GeneralUtility::writeFile($jsonFile, json_encode($data));
+              fopen(Environment::getProjectPath(). "/site.webmanifest", "w") or die("Unable to open file!");
             }
+            GeneralUtility::writeFile($jsonFile, json_encode($data));
           }
           else{
             //Creating PWA Directory
@@ -234,9 +234,9 @@ class PwaMiddleware implements MiddlewareInterface
             
             $jsonFile = Environment::getPublicPath().'/site.webmanifest';
             if (!file_exists($jsonFile)) {
-                fopen(Environment::getPublicPath(). "/site.webmanifest", "w") or die("Unable to open file!");
-                GeneralUtility::writeFile($jsonFile, json_encode($data));
+              fopen(Environment::getPublicPath(). "/site.webmanifest", "w") or die("Unable to open file!");
             }
+            GeneralUtility::writeFile($jsonFile, json_encode($data));
           }
         }
     }
