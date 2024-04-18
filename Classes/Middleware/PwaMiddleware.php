@@ -43,11 +43,11 @@ class PwaMiddleware implements MiddlewareInterface
      */
     protected function isWebmanifestRequest(): bool
     {
-        if($this->request->getUri()->getPath() === $this->getConfigurations()['start_url']){
-          return true;
-        } else {
-          return false;
-        }
+      $configurations = $this->getConfigurations();
+      $startUrl = $configurations['start_url'] ?? null;
+      $currentPath = $this->request->getUri()->getPath();
+      
+      return isset($startUrl) && $currentPath === $startUrl;
     }
 
     /**
@@ -181,29 +181,29 @@ class PwaMiddleware implements MiddlewareInterface
     {
       $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
       $versionInformation->getMajorVersion();
-
+      $pwaFileadminPath = '/fileadmin/pwa';
       if (Environment::isComposerMode())
       {
         //Creating PWA Directory
-        if(!is_dir(Environment::getProjectPath() .'/public/fileadmin/pwa')){
-          mkdir(Environment::getProjectPath() .'/public/fileadmin/pwa');
+        if(!is_dir(Environment::getPublicPath() .$pwaFileadminPath)){
+          mkdir(Environment::getPublicPath() .$pwaFileadminPath);
         }
         // Copy PWA icons from extension to fileadmin
         if($versionInformation->getMajorVersion() >= 12){
-          $this->copyfolder(Environment::getProjectPath() . "/vendor/nitsan/ns-pwa/Resources/Public/pwa/icons/", Environment::getProjectPath() . '/' . '/public/fileadmin/pwa/');
+          $this->copyfolder(Environment::getProjectPath() . "/vendor/nitsan/ns-pwa/Resources/Public/pwa/icons/", Environment::getPublicPath() . '/' . $pwaFileadminPath . '/');
 
           //Creating JavaScript file and append data
-          $jsonFile = Environment::getProjectPath().'/site.webmanifest';
+          $jsonFile = Environment::getPublicPath().'/'.self::MANIFEST_NAME;
           if (!file_exists($jsonFile)) {
-            fopen(Environment::getProjectPath(). "/site.webmanifest", "w") or die("Unable to open file!");
+            fopen(Environment::getPublicPath(). "/".self::MANIFEST_NAME, "w") or die("Unable to open file!");
           }
             GeneralUtility::writeFile($jsonFile, json_encode($data));
         }
         else{
-          $this->copyfolder(Environment::getProjectPath() . "/public/typo3conf/ext/Resources/Public/pwa/icons/", Environment::getProjectPath() . '/' . '/public/fileadmin/pwa/');
-          $jsonFile = Environment::getProjectPath().'/site.webmanifest';
+          $this->copyfolder(Environment::getPublicPath() . "/typo3conf/ext/ns_pwa/Resources/Public/pwa/icons/", Environment::getPublicPath() . '/' . $pwaFileadminPath . '/');
+          $jsonFile = Environment::getPublicPath().'/'.self::MANIFEST_NAME;
           if (!file_exists($jsonFile)) {
-              fopen(Environment::getProjectPath(). "/site.webmanifest", "w") or die("Unable to open file!");
+              fopen(Environment::getPublicPath(). "/".self::MANIFEST_NAME, "w") or die("Unable to open file!");
           }
           GeneralUtility::writeFile($jsonFile, json_encode($data));
         }
@@ -213,28 +213,28 @@ class PwaMiddleware implements MiddlewareInterface
         if($versionInformation->getMajorVersion() >= 12)
         {
           //Creating PWA Directory
-          if(!is_dir(Environment::getProjectPath() .'/fileadmin/pwa')){
-            mkdir(Environment::getProjectPath() .'/fileadmin/pwa');
+          if(!is_dir(Environment::getPublicPath() .$pwaFileadminPath)){
+            mkdir(Environment::getPublicPath() .$pwaFileadminPath);
           }
           $this->copyfolder(Environment::getPublicPath() . "/typo3conf/ext/ns_pwa/Resources/Public/pwa/icons/", Environment::getProjectPath() . '/' . 'fileadmin/pwa/');
 
           //Creating JavaScript file and append data
-          $jsonFile = Environment::getProjectPath().'/site.webmanifest';
+          $jsonFile = Environment::getPublicPath().'/'.self::MANIFEST_NAME;
           if (!file_exists($jsonFile)) {
-            fopen(Environment::getProjectPath(). "/site.webmanifest", "w") or die("Unable to open file!");
+            fopen(Environment::getPublicPath(). "/".self::MANIFEST_NAME, "w") or die("Unable to open file!");
           }
           GeneralUtility::writeFile($jsonFile, json_encode($data));
         }
         else{
           //Creating PWA Directory
-          if(!is_dir(Environment::getPublicPath() .'/fileadmin/pwa')){
-            mkdir(Environment::getPublicPath() .'/fileadmin/pwa');
+          if(!is_dir(Environment::getPublicPath() .$pwaFileadminPath)){
+            mkdir(Environment::getPublicPath() .$pwaFileadminPath);
           }
           $this->copyfolder(Environment::getPublicPath() . "/typo3conf/ext/ns_pwa/Resources/Public/pwa/icons/", Environment::getPublicPath() . '/' . 'fileadmin/pwa/');
           
-          $jsonFile = Environment::getPublicPath().'/site.webmanifest';
+          $jsonFile = Environment::getPublicPath().'/'.self::MANIFEST_NAME;
           if (!file_exists($jsonFile)) {
-            fopen(Environment::getPublicPath(). "/site.webmanifest", "w") or die("Unable to open file!");
+            fopen(Environment::getPublicPath(). "/".self::MANIFEST_NAME, "w") or die("Unable to open file!");
           }
           GeneralUtility::writeFile($jsonFile, json_encode($data));
         }
