@@ -2,17 +2,11 @@
 
 return [
     'frontend' => [
-        'middleware-identifier' => [
-            'disabled' => true
-        ],
-        'overwrite-middleware-identifier' => [
+        'nitsan/ns-pwa' => [
             'target' => \NITSAN\NsPwa\Middleware\PwaMiddleware::class,
             'after' => [
-                'another-middleware-identifier',
+                'typo3/cms-frontend/tsfe',
             ],
-            'before' => [
-                '3rd-middleware-identifier',
-            ]
-        ]
-    ]
+        ],
+    ],
 ];

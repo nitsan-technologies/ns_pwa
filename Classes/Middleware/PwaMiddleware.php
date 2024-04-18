@@ -30,7 +30,7 @@ class PwaMiddleware implements MiddlewareInterface
     ): ResponseInterface {
         $this->request = $request;
         if ($this->isWebmanifestRequest()) {
-            $this->processPwa();
+          $this->processPwa();
         }
 
         return $handler->handle($this->request);
@@ -44,9 +44,9 @@ class PwaMiddleware implements MiddlewareInterface
     protected function isWebmanifestRequest(): bool
     {
         if($this->request->getUri()->getPath() === $this->getConfigurations()['start_url']){
-            return true;
+          return true;
         } else {
-            return false;
+          return false;
         }
     }
 
@@ -57,16 +57,16 @@ class PwaMiddleware implements MiddlewareInterface
      */
     protected function processPwa(): void
     {
-        $caching = GeneralUtility::makeInstance(CacheManager::class);
-        $caching->flushCaches();
-        
-        $configurations = $this->getConfigurations();
+      $caching = GeneralUtility::makeInstance(CacheManager::class);
+      $caching->flushCaches();
+      
+      $configurations = $this->getConfigurations();
 
-        $this->addHeaderData($configurations);
+      $this->addHeaderData($configurations);
 
-        $data = $this->prepareJsonData($configurations);
+      $data = $this->prepareJsonData($configurations);
 
-        $this->processFiles($data);
+      $this->processFiles($data);
 
     }
 
@@ -77,13 +77,13 @@ class PwaMiddleware implements MiddlewareInterface
      */
     protected function getConfigurations(): array
     {
-        $configManager = GeneralUtility::makeInstance(ConfigurationManagerInterface::class);
-        $extConfiguration = $configManager->getConfiguration('FullTypoScript', 'ns_pwa');
-        if(isset($extConfiguration['ns_pwa.']['settings.'])) {
-            return $extConfiguration['ns_pwa.']['settings.'];
-        } else {
-            return [];
-        }
+      $configManager = GeneralUtility::makeInstance(ConfigurationManagerInterface::class);
+      $extConfiguration = $configManager->getConfiguration('FullTypoScript', 'ns_pwa');
+      if(isset($extConfiguration['ns_pwa.']['settings.'])) {
+        return $extConfiguration['ns_pwa.']['settings.'];
+      } else {
+        return [];
+      }
     }
 
     /**
@@ -94,19 +94,19 @@ class PwaMiddleware implements MiddlewareInterface
      */
     protected function addHeaderData(array $configurations): void
     {
-        $siteUrl = $this->request->getAttribute('normalizedParams')->getSiteUrl();
-        $manifestUrl = $siteUrl.self::MANIFEST_NAME;
+      $siteUrl = $this->request->getAttribute('normalizedParams')->getSiteUrl();
+      $manifestUrl = $siteUrl.self::MANIFEST_NAME;
 
-        $headerData = "<link rel='manifest' href='{$manifestUrl}'>";
-        $headerData .= '<meta name="apple-mobile-web-app-capable" content="yes">';
-        $headerData .= '<meta name="apple-mobile-web-app-status-bar-style" content="black">';
-        $headerData .= "<meta name='apple-mobile-web-app-title' content='{$configurations['name']}'>";
-        $headerData .= "<link rel='apple-touch-icon' href='{$configurations['icon']}'>";
-        $headerData .= "<meta name='msapplication-TileImage' content='{$configurations['icon']}'>";
-        $headerData .= "<meta name='theme-color' content='{$configurations['theme_color']}'>";
-        $headerData .= "<meta name='msapplication-TileColor' content='{$configurations['theme_color']}'>";
+      $headerData = "<link rel='manifest' href='{$manifestUrl}'>";
+      $headerData .= '<meta name="apple-mobile-web-app-capable" content="yes">';
+      $headerData .= '<meta name="apple-mobile-web-app-status-bar-style" content="black">';
+      $headerData .= "<meta name='apple-mobile-web-app-title' content='{$configurations['name']}'>";
+      $headerData .= "<link rel='apple-touch-icon' href='{$configurations['icon']}'>";
+      $headerData .= "<meta name='msapplication-TileImage' content='{$configurations['icon']}'>";
+      $headerData .= "<meta name='theme-color' content='{$configurations['theme_color']}'>";
+      $headerData .= "<meta name='msapplication-TileColor' content='{$configurations['theme_color']}'>";
 
-        GeneralUtility::makeInstance(PageRenderer::class)->addHeaderData($headerData);
+      GeneralUtility::makeInstance(PageRenderer::class)->addHeaderData($headerData);
     }
 
     /**
@@ -117,58 +117,58 @@ class PwaMiddleware implements MiddlewareInterface
      */
     protected function prepareJsonData(array $configurations): array
     {
-        $data = [
-            "short_name" => "$configurations[short_name]",
-            "name" => "$configurations[name]",
-            "icons" => [
-                [
-                    "src" => "$configurations[icon_192]",
-                    "sizes" => "192x192",
-                    "type" => "image/png",
-                    "density" => 4
-                ],
-                [
-                    "src" => "$configurations[icon_512]",
-                    "sizes" => "512x512",
-                    "type" => "image/png"
-                ],
-                [
-                    "src" => "$configurations[icon_144]",
-                    "sizes" => "144x144",
-                    "type" => "image/png",
-                    "purpose" => "maskable"
-                ]
-            ],
-            "start_url" =>  "$configurations[start_url]",
-            "background_color" => "$configurations[background_color]",
-            "display" => "$configurations[display]",
-            "scope" => "$configurations[scope]",
-            "theme_color" => "$configurations[theme_color]",
-        ];
+      $data = [
+          "short_name" => "$configurations[short_name]",
+          "name" => "$configurations[name]",
+          "icons" => [
+              [
+                  "src" => "$configurations[icon_192]",
+                  "sizes" => "192x192",
+                  "type" => "image/png",
+                  "density" => 4
+              ],
+              [
+                  "src" => "$configurations[icon_512]",
+                  "sizes" => "512x512",
+                  "type" => "image/png"
+              ],
+              [
+                  "src" => "$configurations[icon_144]",
+                  "sizes" => "144x144",
+                  "type" => "image/png",
+                  "purpose" => "maskable"
+              ]
+          ],
+          "start_url" =>  "$configurations[start_url]",
+          "background_color" => "$configurations[background_color]",
+          "display" => "$configurations[display]",
+          "scope" => "$configurations[scope]",
+          "theme_color" => "$configurations[theme_color]",
+      ];
 
-        // Check if ss_icon_mobile exists and add it to the screenshots array
-        if (!empty($configurations["ss_icon_desktop"]))
-        {
-            $data["screenshots"][] = [
-                "src" => "$configurations[ss_icon_desktop]",
-                "sizes" => "$configurations[ss_icon_size_desktop]",
-                "type" => "image/jpg",
-                "form_factor" => "wide",
-                "label" => "For Desktop"
-            ];
-        }
-        if (!empty($configurations["ss_icon_mobile"]))
-        {
-            $data["screenshots"][] = [
-                "src" => "$configurations[ss_icon_mobile]",
-                "sizes" => "$configurations[ss_icon_size_mobile]",
-                "type" => "image/jpg",
-                "form_factor" => "narrow",
-                "label" => "For Mobile"
-            ];
-        }  
+      // Check if ss_icon_mobile exists and add it to the screenshots array
+      if (!empty($configurations["ss_icon_desktop"]))
+      {
+          $data["screenshots"][] = [
+              "src" => "$configurations[ss_icon_desktop]",
+              "sizes" => "$configurations[ss_icon_size_desktop]",
+              "type" => "image/jpg",
+              "form_factor" => "wide",
+              "label" => "For Desktop"
+          ];
+      }
+      if (!empty($configurations["ss_icon_mobile"]))
+      {
+          $data["screenshots"][] = [
+              "src" => "$configurations[ss_icon_mobile]",
+              "sizes" => "$configurations[ss_icon_size_mobile]",
+              "type" => "image/jpg",
+              "form_factor" => "narrow",
+              "label" => "For Mobile"
+          ];
+      }  
 
-        return $data;
+      return $data;
     }
 
     /**
@@ -179,66 +179,66 @@ class PwaMiddleware implements MiddlewareInterface
      */
     protected function processFiles(array $data): void
     {
-        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
-        $versionInformation->getMajorVersion();
+      $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
+      $versionInformation->getMajorVersion();
 
-        if (Environment::isComposerMode())
-        {
-          //Creating PWA Directory
-          if(!is_dir(Environment::getProjectPath() .'/public/fileadmin/pwa')){
-            mkdir(Environment::getProjectPath() .'/public/fileadmin/pwa');
-          }
-          // Copy PWA icons from extension to fileadmin
-          if($versionInformation->getMajorVersion() >= 12){
-            $this->copyfolder(Environment::getProjectPath() . "/vendor/nitsan/ns-pwa/Resources/Public/pwa/icons/", Environment::getProjectPath() . '/' . '/public/fileadmin/pwa/');
+      if (Environment::isComposerMode())
+      {
+        //Creating PWA Directory
+        if(!is_dir(Environment::getProjectPath() .'/public/fileadmin/pwa')){
+          mkdir(Environment::getProjectPath() .'/public/fileadmin/pwa');
+        }
+        // Copy PWA icons from extension to fileadmin
+        if($versionInformation->getMajorVersion() >= 12){
+          $this->copyfolder(Environment::getProjectPath() . "/vendor/nitsan/ns-pwa/Resources/Public/pwa/icons/", Environment::getProjectPath() . '/' . '/public/fileadmin/pwa/');
 
-            //Creating JavaScript file and append data
-            $jsonFile = Environment::getProjectPath().'/site.webmanifest';
-            if (!file_exists($jsonFile)) {
-              fopen(Environment::getProjectPath(). "/site.webmanifest", "w") or die("Unable to open file!");
-            }
-              GeneralUtility::writeFile($jsonFile, json_encode($data));
+          //Creating JavaScript file and append data
+          $jsonFile = Environment::getProjectPath().'/site.webmanifest';
+          if (!file_exists($jsonFile)) {
+            fopen(Environment::getProjectPath(). "/site.webmanifest", "w") or die("Unable to open file!");
           }
-          else{
-            $this->copyfolder(Environment::getProjectPath() . "/public/typo3conf/ext/Resources/Public/pwa/icons/", Environment::getProjectPath() . '/' . '/public/fileadmin/pwa/');
-            $jsonFile = Environment::getProjectPath().'/site.webmanifest';
-            if (!file_exists($jsonFile)) {
-                fopen(Environment::getProjectPath(). "/site.webmanifest", "w") or die("Unable to open file!");
-            }
             GeneralUtility::writeFile($jsonFile, json_encode($data));
-          }
         }
         else{
-          //File Creation and clone icons folder from extension
-          if($versionInformation->getMajorVersion() >= 12)
-          {
-            //Creating PWA Directory
-            if(!is_dir(Environment::getProjectPath() .'/fileadmin/pwa')){
-              mkdir(Environment::getProjectPath() .'/fileadmin/pwa');
-            }
-            $this->copyfolder(Environment::getPublicPath() . "/typo3conf/ext/ns_pwa/Resources/Public/pwa/icons/", Environment::getProjectPath() . '/' . 'fileadmin/pwa/');
-
-            //Creating JavaScript file and append data
-            $jsonFile = Environment::getProjectPath().'/site.webmanifest';
-            if (!file_exists($jsonFile)) {
+          $this->copyfolder(Environment::getProjectPath() . "/public/typo3conf/ext/Resources/Public/pwa/icons/", Environment::getProjectPath() . '/' . '/public/fileadmin/pwa/');
+          $jsonFile = Environment::getProjectPath().'/site.webmanifest';
+          if (!file_exists($jsonFile)) {
               fopen(Environment::getProjectPath(). "/site.webmanifest", "w") or die("Unable to open file!");
-            }
-            GeneralUtility::writeFile($jsonFile, json_encode($data));
           }
-          else{
-            //Creating PWA Directory
-            if(!is_dir(Environment::getPublicPath() .'/fileadmin/pwa')){
-              mkdir(Environment::getPublicPath() .'/fileadmin/pwa');
-            }
-            $this->copyfolder(Environment::getPublicPath() . "/typo3conf/ext/ns_pwa/Resources/Public/pwa/icons/", Environment::getPublicPath() . '/' . 'fileadmin/pwa/');
-            
-            $jsonFile = Environment::getPublicPath().'/site.webmanifest';
-            if (!file_exists($jsonFile)) {
-              fopen(Environment::getPublicPath(). "/site.webmanifest", "w") or die("Unable to open file!");
-            }
-            GeneralUtility::writeFile($jsonFile, json_encode($data));
-          }
+          GeneralUtility::writeFile($jsonFile, json_encode($data));
         }
+      }
+      else{
+        //File Creation and clone icons folder from extension
+        if($versionInformation->getMajorVersion() >= 12)
+        {
+          //Creating PWA Directory
+          if(!is_dir(Environment::getProjectPath() .'/fileadmin/pwa')){
+            mkdir(Environment::getProjectPath() .'/fileadmin/pwa');
+          }
+          $this->copyfolder(Environment::getPublicPath() . "/typo3conf/ext/ns_pwa/Resources/Public/pwa/icons/", Environment::getProjectPath() . '/' . 'fileadmin/pwa/');
+
+          //Creating JavaScript file and append data
+          $jsonFile = Environment::getProjectPath().'/site.webmanifest';
+          if (!file_exists($jsonFile)) {
+            fopen(Environment::getProjectPath(). "/site.webmanifest", "w") or die("Unable to open file!");
+          }
+          GeneralUtility::writeFile($jsonFile, json_encode($data));
+        }
+        else{
+          //Creating PWA Directory
+          if(!is_dir(Environment::getPublicPath() .'/fileadmin/pwa')){
+            mkdir(Environment::getPublicPath() .'/fileadmin/pwa');
+          }
+          $this->copyfolder(Environment::getPublicPath() . "/typo3conf/ext/ns_pwa/Resources/Public/pwa/icons/", Environment::getPublicPath() . '/' . 'fileadmin/pwa/');
+          
+          $jsonFile = Environment::getPublicPath().'/site.webmanifest';
+          if (!file_exists($jsonFile)) {
+            fopen(Environment::getPublicPath(). "/site.webmanifest", "w") or die("Unable to open file!");
+          }
+          GeneralUtility::writeFile($jsonFile, json_encode($data));
+        }
+      }
     }
 
     /**
