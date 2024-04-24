@@ -105,6 +105,7 @@ $siteColumns['theme_color'] = [
 ];
 $siteColumns['icon'] = [
     'label' => $languageFile.'icon.label',
+    'description' => $languageFile.'icon.description',
     'config' => [
         'type' => 'input',
         'default' => '/fileadmin/pwa/pwa.png'
@@ -118,12 +119,28 @@ $siteColumns['icon_144'] = [
         'default' => '/fileadmin/pwa/pwa.png'
     ],
 ];
+$siteColumns['icon_144_type'] = [
+    'label' => $languageFile.'icon_144_type.label',
+    'description' => $languageFile.'icon_144_type.description',
+    'config' => [
+        'type' => 'input',
+        'default' => 'image/png'
+    ],
+];
 $siteColumns['icon_192'] = [
     'label' => $languageFile.'icon_192.label',
     'description' => $languageFile.'icon_192.description',
     'config' => [
         'type' => 'input',
         'default' => '/fileadmin/pwa/pwa-192.png'
+    ],
+];
+$siteColumns['icon_192_type'] = [
+    'label' => $languageFile.'icon_192_type.label',
+    'description' => $languageFile.'icon_192_type.description',
+    'config' => [
+        'type' => 'input',
+        'default' => 'image/png'
     ],
 ];
 $siteColumns['icon_512'] = [
@@ -134,12 +151,28 @@ $siteColumns['icon_512'] = [
         'default' => '/fileadmin/pwa/pwa-512.png'
     ],
 ];
+$siteColumns['icon_512_type'] = [
+    'label' => $languageFile.'icon_512_type.label',
+    'description' => $languageFile.'icon_512_type.description',
+    'config' => [
+        'type' => 'input',
+        'default' => 'image/png'
+    ],
+];
 $siteColumns['ss_icon_desktop'] = [
     'label' => $languageFile.'ss_icon_desktop.label',
     'description' => $languageFile.'ss_icon_desktop.description',
     'config' => [
         'type' => 'input',
         'default' => '/fileadmin/pwa/screenshot.jpg'
+    ],
+];
+$siteColumns['ss_icon_desktop_type'] = [
+    'label' => $languageFile.'ss_icon_desktop_type.label',
+    'description' => $languageFile.'ss_icon_desktop_type.description',
+    'config' => [
+        'type' => 'input',
+        'default' => 'image/jpg'
     ],
 ];
 $siteColumns['ss_icon_size_desktop'] = [
@@ -156,6 +189,14 @@ $siteColumns['ss_icon_mobile'] = [
     'config' => [
         'type' => 'input',
         'default' => '/fileadmin/pwa/screenshot-mobile.jpg'
+    ],
+];
+$siteColumns['ss_icon_mobile_type'] = [
+    'label' => $languageFile.'ss_icon_mobile_type.label',
+    'description' => $languageFile.'ss_icon_mobile_type.description',
+    'config' => [
+        'type' => 'input',
+        'default' => 'image/jpg'
     ],
 ];
 $siteColumns['ss_icon_size_mobile'] = [
@@ -177,10 +218,10 @@ $GLOBALS['SiteConfiguration']['site']['palettes'] = array_merge_recursive(
             'showitem' => 'background_color, display, theme_color'
         ],
         'icons' => [
-            'showitem' => 'icon, icon_144, --linebreak--, icon_192, icon_512'
+            'showitem' => 'icon,  --linebreak--, icon_144, icon_144_type, --linebreak--, icon_192, icon_192_type, --linebreak--, icon_512, icon_512_type'
         ],
         'screenshots' => [
-            'showitem' => 'ss_icon_desktop, ss_icon_size_desktop, --linebreak--, ss_icon_mobile, ss_icon_size_mobile'
+            'showitem' => 'ss_icon_desktop, ss_icon_desktop_type, ss_icon_size_desktop, --linebreak--, ss_icon_mobile, ss_icon_mobile_type, ss_icon_size_mobile'
         ],
     ]
 );

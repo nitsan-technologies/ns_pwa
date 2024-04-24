@@ -54,47 +54,80 @@
             <trans-unit id="settings.icon.label">
 				<source>PWA Icon</source>
 			</trans-unit>
+			<trans-unit id="settings.icon.description">
+				<source>The icon of your web app.</source>
+			</trans-unit>
             <trans-unit id="settings.icon_144.label">
 				<source>PWA Mask Icon (144*144)</source>
 			</trans-unit>
             <trans-unit id="settings.icon_144.description">
-				<source>The icon size should be 144*144</source>
+				<source>The icon size should be 144*144.</source>
+			</trans-unit>
+			<trans-unit id="settings.icon_144_type.label">
+				<source>Image Type</source>
+			</trans-unit>
+            <trans-unit id="settings.icon_144_type.description">
+				<source>Eg. image/png, image/jpg</source>
 			</trans-unit>
             <trans-unit id="settings.icon_192.label">
 				<source>PWA Icon (192*192)</source>
 			</trans-unit>
             <trans-unit id="settings.icon_192.description">
-				<source>The icon size should be 192*192</source>
+				<source>The icon size should be 192*192.</source>
+			</trans-unit>
+			<trans-unit id="settings.icon_192_type.label">
+				<source>Image Type</source>
+			</trans-unit>
+            <trans-unit id="settings.icon_192_type.description">
+				<source>Eg. image/png, image/jpg</source>
 			</trans-unit>
             <trans-unit id="settings.icon_512.label">
 				<source>PWA Icon (512*512)</source>
 			</trans-unit>
             <trans-unit id="settings.icon_512.description">
-				<source>The icon size should be 512*512</source>
+				<source>The icon size should be 512*512.</source>
+			</trans-unit>
+			<trans-unit id="settings.icon_512_type.label">
+				<source>Image Type</source>
+			</trans-unit>
+            <trans-unit id="settings.icon_512_type.description">
+				<source>Eg. image/png, image/jpg</source>
 			</trans-unit>
             <trans-unit id="settings.ss_icon_desktop.label">
 				<source>Desktop Screenshots</source>
 			</trans-unit>
             <trans-unit id="settings.ss_icon_desktop.description">
-				<source>The width and height must be at least 370px and at most 3840px</source>
+				<source>The width and height must be at least 370px and at most 3840px.</source>
+			</trans-unit>
+			<trans-unit id="settings.ss_icon_desktop_type.label">
+				<source>Image Type</source>
+			</trans-unit>
+            <trans-unit id="settings.ss_icon_desktop_type.description">
+				<source>Eg. image/png, image/jpg</source>
 			</trans-unit>
             <trans-unit id="settings.ss_icon_size_desktop.label">
 				<source>Size of Desktop Screenshots</source>
 			</trans-unit>
             <trans-unit id="settings.ss_icon_size_desktop.description">
-				<source>Size of the desktop screenshot which you uploaded above</source>
+				<source>Size of the desktop screenshot which you uploaded above.</source>
 			</trans-unit>
             <trans-unit id="settings.ss_icon_mobile.label">
 				<source>Mobile Screenshots</source>
 			</trans-unit>
             <trans-unit id="settings.ss_icon_mobile.description">
-				<source>The width and height must be at least 370px and at most 3840px</source>
+				<source>The width and height must be at least 370px and at most 3840px.</source>
+			</trans-unit>
+			<trans-unit id="settings.ss_icon_mobile_type.label">
+				<source>Image Type</source>
+			</trans-unit>
+            <trans-unit id="settings.ss_icon_mobile_type.description">
+				<source>Eg. image/png, image/jpg</source>
 			</trans-unit>
             <trans-unit id="settings.ss_icon_size_mobile.label">
 				<source>Size of Mobile Screenshots</source>
 			</trans-unit>
             <trans-unit id="settings.ss_icon_size_mobile.description">
-				<source>Size of the mobile screenshot which you uploaded above</source>
+				<source>Size of the mobile screenshot which you uploaded above.</source>
 			</trans-unit>
 		</body>
 	</file>

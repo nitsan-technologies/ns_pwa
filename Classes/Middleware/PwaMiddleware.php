@@ -117,21 +117,21 @@ class PwaMiddleware implements MiddlewareInterface
         "name" => "$configurations[name]",
         "icons" => [
             [
-                "src" => "$configurations[icon_192]",
-                "sizes" => "192x192",
-                "type" => "image/png",
-                "density" => 4
+              "src" => "$configurations[icon_192]",
+              "sizes" => "192x192",
+              "type" =>  "$configurations[icon_192_type]",
+              "density" => 4
             ],
             [
-                "src" => "$configurations[icon_512]",
-                "sizes" => "512x512",
-                "type" => "image/png"
+              "src" => "$configurations[icon_512]",
+              "sizes" => "512x512",
+              "type" => "$configurations[icon_512_type]"
             ],
             [
-                "src" => "$configurations[icon_144]",
-                "sizes" => "144x144",
-                "type" => "image/png",
-                "purpose" => "maskable"
+              "src" => "$configurations[icon_144]",
+              "sizes" => "144x144",
+              "type" => "$configurations[icon_144_type]",
+              "purpose" => "maskable"
             ]
         ],
         "start_url" =>  "$configurations[start_url]",
@@ -147,7 +147,7 @@ class PwaMiddleware implements MiddlewareInterface
         $data["screenshots"][] = [
             "src" => "$configurations[ss_icon_desktop]",
             "sizes" => "$configurations[ss_icon_size_desktop]",
-            "type" => "image/jpg",
+            "type" => "$configurations[ss_icon_desktop_type]",
             "form_factor" => "wide",
             "label" => "For Desktop"
         ];
@@ -157,7 +157,7 @@ class PwaMiddleware implements MiddlewareInterface
         $data["screenshots"][] = [
             "src" => "$configurations[ss_icon_mobile]",
             "sizes" => "$configurations[ss_icon_size_mobile]",
-            "type" => "image/jpg",
+            "type" => "$configurations[ss_icon_mobile_type]",
             "form_factor" => "narrow",
             "label" => "For Mobile"
         ];
