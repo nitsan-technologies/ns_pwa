@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2024-04-24T10:15:02Z" product-name="ns_pwa">
+		<header/>
+		<body>
+			<trans-unit id="settings.short_name.label">
+				<source>Short Name</source>
+			</trans-unit>
+			<trans-unit id="settings.short_name.description">
+				<source>Short name to be shown on the home screen.</source>
+			</trans-unit>
+            <trans-unit id="settings.name.label">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="settings.name.description">
+				<source>The full name of your web app.</source>
+			</trans-unit>
+            <trans-unit id="settings.start_url.label">
+				<source>Start Url (/ or /blog)</source>
+			</trans-unit>
+            <trans-unit id="settings.entry_point.label">
+				<source>Entry Point of Site (/ or /blog)</source>
+			</trans-unit>
+            <trans-unit id="settings.background_color.label">
+				<source>Background Color</source>
+			</trans-unit>
+			<trans-unit id="settings.background_color.description">
+				<source>A color used as the app's default background.</source>
+			</trans-unit>
+            <trans-unit id="settings.display.label">
+				<source>Display</source>
+			</trans-unit>
+			<trans-unit id="settings.display.standalone.label">
+				<source>Standalone</source>
+			</trans-unit>
+			<trans-unit id="settings.display.minimal_ui.label">
+				<source>Minimal UI</source>
+			</trans-unit>
+			<trans-unit id="settings.display.fullscreen.label">
+				<source>Fullscreen</source>
+			</trans-unit>
+			<trans-unit id="settings.display.description">
+				<source>How the app is displayed.</source>
+			</trans-unit>
+            <trans-unit id="settings.scope.label">
+				<source>Scope (/ or /blog)</source>
+			</trans-unit>
+            <trans-unit id="settings.theme_color.label">
+				<source>Theme Color</source>
+			</trans-unit>
+            <trans-unit id="settings.theme_color.description">
+				<source>A primary color for the UI, used by operating system.</source>
+			</trans-unit>
+            <trans-unit id="settings.icon.label">
+				<source>PWA Icon</source>
+			</trans-unit>
+            <trans-unit id="settings.icon_144.label">
+				<source>PWA Mask Icon (144*144)</source>
+			</trans-unit>
+            <trans-unit id="settings.icon_144.description">
+				<source>The icon size should be 144*144</source>
+			</trans-unit>
+            <trans-unit id="settings.icon_192.label">
+				<source>PWA Icon (192*192)</source>
+			</trans-unit>
+            <trans-unit id="settings.icon_192.description">
+				<source>The icon size should be 192*192</source>
+			</trans-unit>
+            <trans-unit id="settings.icon_512.label">
+				<source>PWA Icon (512*512)</source>
+			</trans-unit>
+            <trans-unit id="settings.icon_512.description">
+				<source>The icon size should be 512*512</source>
+			</trans-unit>
+            <trans-unit id="settings.ss_icon_desktop.label">
+				<source>Desktop Screenshots</source>
+			</trans-unit>
+            <trans-unit id="settings.ss_icon_desktop.description">
+				<source>The width and height must be at least 370px and at most 3840px</source>
+			</trans-unit>
+            <trans-unit id="settings.ss_icon_size_desktop.label">
+				<source>Size of Desktop Screenshots</source>
+			</trans-unit>
+            <trans-unit id="settings.ss_icon_size_desktop.description">
+				<source>Size of the desktop screenshot which you uploaded above</source>
+			</trans-unit>
+            <trans-unit id="settings.ss_icon_mobile.label">
+				<source>Mobile Screenshots</source>
+			</trans-unit>
+            <trans-unit id="settings.ss_icon_mobile.description">
+				<source>The width and height must be at least 370px and at most 3840px</source>
+			</trans-unit>
+            <trans-unit id="settings.ss_icon_size_mobile.label">
+				<source>Size of Mobile Screenshots</source>
+			</trans-unit>
+            <trans-unit id="settings.ss_icon_size_mobile.description">
+				<source>Size of the mobile screenshot which you uploaded above</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

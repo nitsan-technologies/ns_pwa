@@ -1,28 +1,6 @@
-ns_pwa {
-    settings{
-        short_name = {$ns_pwa.settings.short_name}
-        name = {$ns_pwa.settings.name}
-        start_url = {$ns_pwa.settings.start_url}
-        background_color =  {$ns_pwa.settings.background_color}
-        display = {$ns_pwa.settings.display}
-        scope = {$ns_pwa.settings.scope}
-        theme_color =  {$ns_pwa.settings.theme_color}
-        icon = {$ns_pwa.settings.icon}
-        icon_144 = {$ns_pwa.settings.icon_144}
-        icon_192 = {$ns_pwa.settings.icon_192}
-        icon_512 = {$ns_pwa.settings.icon_512}
-        ss_icon_desktop = {$ns_pwa.settings.ss_icon_desktop}
-        ss_icon_size_desktop = {$ns_pwa.settings.ss_icon_size_desktop}
-        ss_icon_mobile = {$ns_pwa.settings.ss_icon_mobile}
-        ss_icon_size_mobile = {$ns_pwa.settings.ss_icon_size_mobile}        
-        entry_point = {$ns_pwa.settings.entry_point}
-    }
-}
-
-
 page = PAGE
 page {
-
+    
     // Set default page typenum
     typeNum = 0
 
