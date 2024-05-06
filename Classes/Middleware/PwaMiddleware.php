@@ -30,25 +30,9 @@ class PwaMiddleware implements MiddlewareInterface
       RequestHandlerInterface $handler
   ): ResponseInterface {
       $this->request = $request;
-      if ($this->isWebmanifestRequest()) {
-        $this->processPwa();
-      }
+      $this->processPwa();
 
       return $handler->handle($this->request);
-  }
-
-  /**
-   * UisWebmanifestRequest
-   *
-   * @return boolean
-   */
-  protected function isWebmanifestRequest(): bool
-  {
-    $configurations = $this->getConfigurations();
-    $startUrl = $configurations['start_url'] ?? null;
-    $currentPath = $this->request->getUri()->getPath();
-    
-    return isset($startUrl) && $currentPath === $startUrl;
   }
 
   /**
@@ -90,7 +74,7 @@ class PwaMiddleware implements MiddlewareInterface
   protected function addHeaderData(array $configurations): void
   {
     $siteUrl = $this->request->getAttribute('normalizedParams')->getSiteUrl();
-    $manifestUrl = $siteUrl.self::MANIFEST_NAME;
+    $manifestUrl = $siteUrl.self::MANIFEST_NAME . '?' . time();
 
     $headerData = "<link rel='manifest' href='{$manifestUrl}'>";
     $headerData .= '<meta name="apple-mobile-web-app-capable" content="yes">';
