@@ -1,13 +1,13 @@
 <?php
 
 $EM_CONF['ns_pwa'] = [
-    'title' => 'TYPO3 PWA (Progressive Web Apps)',
-    'description' => 'Make your TYPO3 website lightning fast & work offline! Get our TYPO3 PWA extension for a better SEO & mobile experience. Install today!
-    *** Live Demo: https://demo.t3planet.com/t3-extensions/typo3-pwa *** Documentation & Free Support: https://t3planet.com/typo3-pwa-extension',
+    'title' => 'TYPO3 Progressive Web App (PWA)',
+    'description' => 'Turn your TYPO3 website into a high-performance Progressive Web App (PWA) with offline access, fast loading, and improved mobile and SEO experience.',
+    
     'category' => 'plugin',
-    'author' => 'T3: Jay Bhalgamiya, T3: Arun Solanki, T3: Nilesh Malankiya, QA: Krishna Dhapa',
-    'author_email' => 'sanjay@nitsan.in',
-    'author_company' => 'T3Planet // NITSAN',
+    'author' => 'Team T3Planet',
+    'author_email' => 'info@t3planet.de',
+    'author_company' => 'T3Planet',
     'state' => 'stable',
     'clearCacheOnLoad' => 0,
     'version' => '1.1.1',
