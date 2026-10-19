@@ -12,10 +12,11 @@
     ],
     "support": {
         "issues": "https://github.com/nitsan-technologies/ns_pwa/issues"
-      },
+    },
     "require": {
-        "typo3/cms-core": "^11 || ^12"
-    },      
+        "typo3/cms-core": "^11 || ^12",
+        "nitsan/ns-license": "^14.5.4"
+    },
     "autoload": {
         "psr-4": {
             "NITSAN\\NsPwa\\": "Classes"
