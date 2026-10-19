@@ -14,6 +14,7 @@ $EM_CONF['ns_pwa'] = [
     'constraints' => [
         'depends' => [
             'typo3' => '11.0.0-12.5.99',
+            'ns_license' => '14.5.4-14.9.99',
         ],
         'conflicts' => [],
         'suggests' => [],
